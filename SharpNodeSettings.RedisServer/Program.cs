@@ -1,12 +1,7 @@
-﻿using SharpNodeSettings.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HslCommunication.LogNet;
+﻿using System;
 using HslCommunication.Enthernet.Redis;
-using HslCommunication;
+using HslCommunication.LogNet;
+using SharpNodeSettings.Core;
 
 /*****************************************************************************************************************
  * 
@@ -18,44 +13,33 @@ using HslCommunication;
  *****************************************************************************************************************/
 
 
-
-
-namespace SharpNodeSettings.RedisServer
-{
-    class Program
-    {
-        static void Main( string[] args )
-        {
+namespace SharpNodeSettings.RedisServer {
+    internal class Program {
+        private static void Main(string[] args) {
             // 创建Redis
-            RedisClient redis = new RedisClient( "127.0.0.1", 6379, "" );
-            redis.SetPersistentConnection( ); // 设置长连接
+            var redis = new RedisClient("127.0.0.1", 6379, "");
+            redis.SetPersistentConnection(); // 设置长连接
 
             // 创建日志
-            ILogNet logNet = new LogNetSingle( "log.txt" );
+            ILogNet logNet = new LogNetSingle("log.txt");
             logNet.BeforeSaveToFile += LogNet_BeforeSaveToFile;
 
-            SharpNodeServer sharpNodeServer = new SharpNodeServer( );
+            var sharpNodeServer = new SharpNodeServer();
             sharpNodeServer.LogNet = logNet;
-            sharpNodeServer.WriteCustomerData = ( Device.DeviceCore deviceCore, string name ) =>
-            {
-                OperateResult write = redis.WriteKey( string.Join( ":", deviceCore.DeviceNodes ) + ":" + name, deviceCore.GetStringValueByName( name ) );
-                if (!write.IsSuccess)
-                {
-                    Console.WriteLine( "Redis Write Failed" );
-                }
+            sharpNodeServer.WriteCustomerData = (deviceCore, name) => {
+                var write = redis.WriteKey(string.Join(":", deviceCore.DeviceNodes) + ":" + name,
+                    deviceCore.GetStringValueByName(name));
+                if (!write.IsSuccess) Console.WriteLine("Redis Write Failed");
             };
             // 加载配置文件之前设置redis写入方法
-            sharpNodeServer.LoadByXmlFile( "settings.xml" );
-            sharpNodeServer.ServerStart( 12345 );
+            sharpNodeServer.LoadByXmlFile("settings.xml");
+            sharpNodeServer.ServerStart(12345);
 
-            Console.ReadLine( );
+            Console.ReadLine();
         }
 
-        private static void LogNet_BeforeSaveToFile( object sender, HslEventArgs e )
-        {
-            Console.WriteLine( e.HslMessage.ToString( ) );
+        private static void LogNet_BeforeSaveToFile(object sender, HslEventArgs e) {
+            Console.WriteLine(e.HslMessage.ToString());
         }
-
-
     }
 }

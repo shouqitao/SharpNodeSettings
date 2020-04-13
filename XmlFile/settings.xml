@@ -1,28 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Settings>
   <NodeClass Name="Devices" Description="所有的设备的集合对象">
     <NodeClass Name="分厂一" Description="">
       <NodeClass Name="车间一" Description="">
-        <DeviceNode Name="测试空设备" Description="此设备安装在角落，编号0001" DeviceType="0" ConnectTimeOut="2000" CreateTime="2018/8/12 9:26:27" InstallationDate="2018/8/12 9:26:27">
-          <DeviceRequest Name="数据请求" Description="一次完整的数据请求" Address="0" Length="10" CaptureInterval="1000" PraseRegularCode="B" />
+        <DeviceNode Name="测试空设备" Description="此设备安装在角落，编号0001" DeviceType="0" ConnectTimeOut="2000"
+                    CreateTime="2018/8/12 9:26:27" InstallationDate="2018/8/12 9:26:27">
+          <DeviceRequest Name="数据请求" Description="一次完整的数据请求" Address="0" Length="10" CaptureInterval="1000"
+                         PraseRegularCode="B" />
         </DeviceNode>
       </NodeClass>
       <NodeClass Name="车间二" Description="">
-        <DeviceNode Name="ModbusTcp客户端" Description="这是描述" DeviceType="10" ConnectTimeOut="1000" CreateTime="2018/8/9 19:58:49" InstallationDate="2018/8/9 19:58:49" IpAddress="127.0.0.1" Port="502" Station="1" IsAddressStartWithZero="true" DataFormat="3" IsStringReverse="false">
-          <DeviceRequest Name="数据请求" Description="一次完整的数据请求" Address="0" Length="30" CaptureInterval="1000" PraseRegularCode="ABCD" />
+        <DeviceNode Name="ModbusTcp客户端" Description="这是描述" DeviceType="10" ConnectTimeOut="1000"
+                    CreateTime="2018/8/9 19:58:49" InstallationDate="2018/8/9 19:58:49" IpAddress="127.0.0.1"
+                    Port="502" Station="1" IsAddressStartWithZero="true" DataFormat="3" IsStringReverse="false">
+          <DeviceRequest Name="数据请求" Description="一次完整的数据请求" Address="0" Length="30" CaptureInterval="1000"
+                         PraseRegularCode="ABCD" />
         </DeviceNode>
       </NodeClass>
     </NodeClass>
     <NodeClass Name="分厂二" Description="位于西南方">
       <NodeClass Name="车间三" Description="">
-        <DeviceNode Name="测试设备二" Description="这是测试设备二的描述" DeviceType="10" ConnectTimeOut="1000" CreateTime="2018/8/10 23:01:28" InstallationDate="2018/8/10 23:01:28" IpAddress="127.0.0.1" Port="502" Station="1" IsAddressStartWithZero="true" DataFormat="3" IsStringReverse="false">
-          <DeviceRequest Name="数据请求" Description="一次完整的数据请求" Address="100" Length="10" CaptureInterval="500" PraseRegularCode="B" />
+        <DeviceNode Name="测试设备二" Description="这是测试设备二的描述" DeviceType="10" ConnectTimeOut="1000"
+                    CreateTime="2018/8/10 23:01:28" InstallationDate="2018/8/10 23:01:28" IpAddress="127.0.0.1"
+                    Port="502" Station="1" IsAddressStartWithZero="true" DataFormat="3" IsStringReverse="false">
+          <DeviceRequest Name="数据请求" Description="一次完整的数据请求" Address="100" Length="10" CaptureInterval="500"
+                         PraseRegularCode="B" />
         </DeviceNode>
       </NodeClass>
     </NodeClass>
   </NodeClass>
   <NodeClass Name="Server" Description="所有挂载的服务器">
-    <ServerNode Name="异形服务器" Description="这是一个异形服务器" CreateTime="2018/8/8 13:29:30" Port="1234" ServerType="2" Password="" />
+    <ServerNode Name="异形服务器" Description="这是一个异形服务器" CreateTime="2018/8/8 13:29:30" Port="1234" ServerType="2"
+                Password="" />
   </NodeClass>
   <NodeClass Name="Regular" Description="所有的解析规则的信息">
     <RegularNode Name="ABCD" Description="">
@@ -37,6 +47,18 @@
     <RegularNode Name="B" Description="">
       <RegularItemNode Name="温度" Description="" Index="0" TypeCode="3" TypeLength="1" />
       <RegularItemNode Name="压力" Description="" Index="2" TypeCode="3" TypeLength="1" />
+      <RegularItemNode Name="条码" Description="" Index="4" TypeCode="11" TypeLength="10" />
+    </RegularNode>
+  </NodeClass>
+</Settings>="压力" Description="" Index="2" TypeCode="3" TypeLength="1" />
+      <RegularItemNode Name="条码" Description="" Index="4" TypeCode="11" TypeLength="10" />
+    </RegularNode>
+  </NodeClass>
+</Settings>="压力" Description="" Index="2" TypeCode="3" TypeLength="1" />
+      <RegularItemNode Name="条码" Description="" Index="4" TypeCode="11" TypeLength="10" />
+    </RegularNode>
+  </NodeClass>
+</Settings>="压力" Description="" Index="2" TypeCode="3" TypeLength="1" />
       <RegularItemNode Name="条码" Description="" Index="4" TypeCode="11" TypeLength="10" />
     </RegularNode>
   </NodeClass>

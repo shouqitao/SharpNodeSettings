@@ -1,32 +1,26 @@
 ﻿#define File
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
+using SharpNodeSettings.View;
 
-
-namespace SharpNodeSettings.Tools
-{
-    static class Program
-    {
+namespace SharpNodeSettings.Tools {
+    internal static class Program {
         /// <summary>
-        /// 应用程序的主入口点。
+        ///     应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main( )
-        {
-            Application.EnableVisualStyles( );
-            Application.SetCompatibleTextRenderingDefault( false );
+        private static void Main() {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
 #if File
             // 从文件启动
-            Application.Run( new SharpNodeSettings.View.FormNodeSetting( "settings.xml" ) );
+            Application.Run(new FormNodeSetting("settings.xml"));
 
 #else
             // 下面的代码
-            using(SharpNodeSettings.View.FormNodeSetting form = new SharpNodeSettings.View.FormNodeSetting( XElement.Load( "settings.xml" ) ))
+            using(SharpNodeSettings.View.FormNodeSetting form =
+ new SharpNodeSettings.View.FormNodeSetting( XElement.Load( "settings.xml" ) ))
             {
                 if (form.ShowDialog( ) == DialogResult.OK)
                 {
@@ -53,7 +47,6 @@ namespace SharpNodeSettings.Tools
             //    // 演示读取数据，此处有个问题在于如果是相同种类的PLC，应用还是很方便的，如果是不同种类的，地址模型就比较麻烦。
             //    HslCommunication.OperateResult<short> read = deviceCore.ReadWriteDevice.ReadInt16( "D100" );
             //}
-
         }
     }
 }

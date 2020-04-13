@@ -27,50 +27,44 @@
  * http://opcfoundation.org/License/MIT/1.00/
  * ======================================================================*/
 
-using System;
-using System.ServiceModel;
 using System.Runtime.Serialization;
-using System.Collections.Generic;
-using Opc.Ua.Server;
 
-namespace SharpNodeSettings.OpcUaServer
-{
+namespace SharpNodeSettings.OpcUaServer {
     /// <summary>
-    /// Stores the configuration the data access node manager.
+    ///     Stores the configuration the data access node manager.
     /// </summary>
-    [DataContract(Namespace=Namespaces.ReferenceApplications)]
-    public class ReferenceServerConfiguration
-    {
+    [DataContract(Namespace = Namespaces.ReferenceApplications)]
+    public class ReferenceServerConfiguration {
         #region Constructors
+
         /// <summary>
-        /// The default constructor.
+        ///     The default constructor.
         /// </summary>
-        public ReferenceServerConfiguration()
-        {
+        public ReferenceServerConfiguration() {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes the object during deserialization.
+        ///     Initializes the object during deserialization.
         /// </summary>
-        [OnDeserializing()]
-        private void Initialize(StreamingContext context)
-        {
+        [OnDeserializing]
+        private void Initialize(StreamingContext context) {
             Initialize();
         }
 
         /// <summary>
-        /// Sets private members to default values.
+        ///     Sets private members to default values.
         /// </summary>
-        private void Initialize()
-        {
-        }
+        private void Initialize() { }
+
         #endregion
 
         #region Public Properties
+
         #endregion
 
         #region Private Members
+
         #endregion
     }
 }

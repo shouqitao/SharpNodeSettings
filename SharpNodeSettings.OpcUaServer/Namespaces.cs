@@ -27,19 +27,13 @@
  * http://opcfoundation.org/License/MIT/1.00/
  * ======================================================================*/
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SharpNodeSettings.OpcUaServer
-{
+namespace SharpNodeSettings.OpcUaServer {
     /// <summary>
-    /// Defines constants for namespaces used by the application.
+    ///     Defines constants for namespaces used by the application.
     /// </summary>
-    public static partial class Namespaces
-    {
+    public static class Namespaces {
         /// <summary>
-        /// The namespace for the nodes provided by the server.
+        ///     The namespace for the nodes provided by the server.
         /// </summary>
         public const string ReferenceApplications = "http://opcfoundation.org/Quickstarts/ReferenceApplications";
     }

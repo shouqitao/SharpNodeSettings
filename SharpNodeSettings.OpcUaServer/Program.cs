@@ -1,55 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Opc.Ua;
 using Opc.Ua.Configuration;
 using Opc.Ua.Server.Controls;
 
-namespace SharpNodeSettings.OpcUaServer
-{
-    static class Program
-    {
+namespace SharpNodeSettings.OpcUaServer {
+    internal static class Program {
         /// <summary>
-        /// 应用程序的主入口点。
+        ///     应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main( )
-        {
+        private static void Main() {
             // Initialize the user interface.
-            Application.EnableVisualStyles( );
-            Application.SetCompatibleTextRenderingDefault( false );
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-            ApplicationInstance.MessageDlg = new ApplicationMessageDlg( );
-            ApplicationInstance application = new ApplicationInstance( );
+            ApplicationInstance.MessageDlg = new ApplicationMessageDlg();
+            var application = new ApplicationInstance();
             application.ApplicationType = ApplicationType.Server;
             application.ConfigSectionName = "SharpNodeSettingsServer";
 
-            try
-            {
-
+            try {
                 // load the application configuration.
-                application.LoadApplicationConfiguration( false ).Wait( );
+                application.LoadApplicationConfiguration(false).Wait();
 
                 // check the application certificate.
-                bool certOk = application.CheckApplicationInstanceCertificate( false, 0 ).Result;
-                if (!certOk)
-                {
-                    throw new Exception( "Application instance certificate invalid!" );
-                }
+                var certOk = application.CheckApplicationInstanceCertificate(false, 0).Result;
+                if (!certOk) throw new Exception("Application instance certificate invalid!");
 
                 // start the server.
-                application.Start( new SharpNodeSettingsServer( ) ).Wait( );
+                application.Start(new SharpNodeSettingsServer()).Wait();
 
                 // run the application interactively.
-                ServerForm serverForm = new ServerForm( application );
+                var serverForm = new ServerForm(application);
                 serverForm.StartPosition = FormStartPosition.CenterScreen;
-                Application.Run( serverForm );
-            }
-            catch (Exception e)
-            {
-                ExceptionDlg.Show( application.ApplicationName, e );
+                Application.Run(serverForm);
+            } catch (Exception e) {
+                ExceptionDlg.Show(application.ApplicationName, e);
             }
         }
     }
